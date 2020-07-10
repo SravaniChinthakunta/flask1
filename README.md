@@ -1,2 +1,2 @@
 # flask1
-This application is a provider for Faculty and Student 
+This Project is a provider for Faculty and Student 
