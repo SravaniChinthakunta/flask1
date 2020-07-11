@@ -1,0 +1,22 @@
+{% extends 'common.html' %}
+{% load static %}
+{% block sravani %}
+    {% include 'common menu.html' %}
+
+
+
+         <table align="center" border="" width="500px" >
+
+              {% for x in data %}
+                 <tr><th> <h4>Course id={{ x.idno }}</h4>
+                  <h5>Name={{ x.name }}</h5>
+                  <h5>Faculty={{ x.faculty }}</h5>
+                  <h5>Date={{ x.date }}</h5>
+                 <h5> Time={{ x.time }}</h5>
+                  <h5>Fee={{ x.fee }}</h5>
+                 <h5>Duration= {{ x.duration }}</h5></th></tr>
+              {% endfor %}
+
+
+         </table>
+{% endblock %}
