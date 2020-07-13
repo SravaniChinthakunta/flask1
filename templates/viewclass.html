@@ -22,7 +22,7 @@
                     <th>{{ x.time }}</th>
                     <th>{{ x.fee }}</th>
                     <th>{{ x.duration }}</th>
-                    <th>yes </th>
+                    <th><a href="{% url 'update' %}?id={{ x.idno }}">yes </a> </th>
                     <th><a href="{% url 'delete' %}?id={{ x.idno }}"> <img src="{% static 'images/delete3.png' %}" width="40" height="40"></a></th>
                     </tr>
                 {% endfor %}

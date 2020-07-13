@@ -24,7 +24,8 @@ urlpatterns = [
     path('schedule/',views.schedule,name="schedule"),
     path('savescheduled/',views.savescheduled,name="savescheduled"),
     path('viewclasses/', views.viewclasses, name="viewclasses"),
-    #path('update/',views.update,name="update"),<a href="{% url 'update' %}?id={{ x.idno }}">
+    path('update/',views.update,name="update"),
+    path('updated/',views.updated,name="updated"),
     path('delete/',views.delete,name="delete"),
     path('student/',views.student,name="student"),
     path('courses/',views.courses,name="courses"),
@@ -33,7 +34,7 @@ urlpatterns = [
     path('LoginStu/',views.LoginStu,name="LoginStu"),
     path('savestulog/',views.savestulog,name="savestulog"),
     path('view_savedcourses/',views.view_savedcourses,name="view_savedcourses"),
-    path('save_enroll/',views.save_enroll,name="save_enroll")
+    path('save_enroll/',views.save_enroll,name="save_enroll"),
 
 
 ]

@@ -25,10 +25,21 @@ def savescheduled(request):
 def viewclasses(request):
     data=Scheduleclass.objects.all()
     return render(request,"viewclass.html",{"data":data})
-#def update(request):
-    #id=request.GET.get(id)
-    #main=Scheduleclass.objects.get(idno=id).update()
-    #return render(request,"scheduleclass.html")
+def update(request):
+    id=request.GET.get("id")
+    result=Scheduleclass.objects.get(idno=id)
+    return render(request,"update.html",{"data":result})
+def updated(request):
+    id=request.POST.get("u1")
+    na=request.POST.get("u2")
+    fa=request.POST.get("u3")
+    da=request.POST.get("u4")
+    ti=request.POST.get("u5")
+    fee=request.POST.get("u6")
+    dur=request.POST.get("u7")
+    Scheduleclass.objects.filter(idno=id).update(name=na,faculty=fa,date=da,time=ti,fee=fee,duration=dur)
+    result=Scheduleclass.objects.get(idno=id)
+    return redirect('viewclasses')
 
 def delete(request):
     idd=request.GET.get("id")
