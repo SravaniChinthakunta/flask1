@@ -60,8 +60,7 @@ def savestulog(request):
         return render(request,"studentlogin.html",{"data":'Invalid user'})
 def view_savedcourses(request):
         result=Scheduleclass.objects.all()
-        data=Student.objects.all()
-        return render(request,"view_savedcourses.html",{"data":result,"result":data})
+        return render(request,"view_savedcourses.html",{"data":result,})
 def save_enroll(request):
     id1=request.GET.get("scno")
     id2=request.GET.get("Cid")

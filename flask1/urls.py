@@ -19,7 +19,7 @@ from app1 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.showindex),
+    path('',views.showindex,name="main"),
     path('validateadmin/',views.validateadmin,name="validateadmin"),
     path('schedule/',views.schedule,name="schedule"),
     path('savescheduled/',views.savescheduled,name="savescheduled"),
