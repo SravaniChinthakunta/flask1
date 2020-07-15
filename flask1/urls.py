@@ -32,9 +32,15 @@ urlpatterns = [
     path('registerstu/',views.registerstu,name="registerstu"),
     path('savestureg/',views.savestureg,name="savestureg"),
     path('LoginStu/',views.LoginStu,name="LoginStu"),
+    path('search/',views.search,name="search"),
+    path('contactus/',views.contactus,name="contactus"),
     path('savestulog/',views.savestulog,name="savestulog"),
+   # path('Getstudentdetails/',views.Getstudentdetails,name="Getstudentdetails"),
     path('view_savedcourses/',views.view_savedcourses,name="view_savedcourses"),
     path('save_enroll/',views.save_enroll,name="save_enroll"),
+    path('view_enroll/',views.view_enroll,name="view_enroll"),
+    path('cancel_enrolledcourse/',views.cancel_enrolledcourse,name="cancel_enrolledcourse"),
+    path('delete_enroll/',views.delete_enroll,name="delete_enroll")
 
 
 ]

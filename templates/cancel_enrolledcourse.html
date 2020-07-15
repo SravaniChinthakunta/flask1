@@ -1,0 +1,30 @@
+{% extends 'common.html' %}
+{% block sravani %}
+    {% load static %}
+    {% include 'login_menu.html' %}
+
+    <table class="table table-dark" style="width: 900px" align="center" border="">
+        <tr><th colspan="8"><h3 align="center">Cancel The Enrolledcourse</h3></th></tr>
+        <tr><th>IDNO</th>
+        <th>Name</th>
+        <th>Faculty</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Fee</th>
+        <th>Duration</th>
+        <th>cancel</th></tr>
+    {% for x in data %}
+        <tr><th>{{ x.idno }}</th>
+        <th>{{ x.name }}</th>
+            <th>{{ x.faculty }}</th>
+            <th>{{ x.date }}</th>
+            <th>{{ x.time }}</th>
+            <th>{{ x.fee }}</th>
+            <th>{{ x.duration }}</th>
+            <th><a href="{% url 'delete_enroll' %}?cid={{ x.idno }}&scno={{ request.session.contact }}">
+                <img src="{% static 'images/Cancel.jpg' %}" width="40" height="40"></a></th>
+        </tr>
+
+    {% endfor %}
+    </table>
+{% endblock %}

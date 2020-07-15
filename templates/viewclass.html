@@ -2,7 +2,7 @@
 {% load static %}
 {% block sravani %}
     {% include 'adminmenu.html' %}
-    <table class="table table-dark" style="width: 900px" align="center" border="2">
+    <table class="table table-dark" style="width: 1000px" align="center" border="2">
                 <tr>
                     <th>Idno</th>
                     <th>Name</th>
@@ -22,7 +22,7 @@
                     <th>{{ x.time }}</th>
                     <th>{{ x.fee }}</th>
                     <th>{{ x.duration }}</th>
-                    <th><a href="{% url 'update' %}?id={{ x.idno }}">yes </a> </th>
+                    <th><a href="{% url 'update' %}?id={{ x.idno }}"><img src="{% static 'images/up.jpg' %}" width="50" height="50"> </a> </th>
                     <th><a href="{% url 'delete' %}?id={{ x.idno }}"> <img src="{% static 'images/delete3.png' %}" width="40" height="40"></a></th>
                     </tr>
                 {% endfor %}

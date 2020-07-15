@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from app1.models import Scheduleclass,Student,Enrolleddetails
 from django.core.exceptions import ObjectDoesNotExist
@@ -44,7 +46,9 @@ def updated(request):
 def delete(request):
     idd=request.GET.get("id")
     Scheduleclass.objects.get(idno=idd).delete()
-    return redirect('schedule')
+    return redirect('viewclasses')
+
+#=================================================================================
 def student(request):
     return render(request,"main.html")
 def courses(request):
@@ -52,6 +56,12 @@ def courses(request):
     return render(request,"viewcourses.html",{"data":data})
 def registerstu(request):
     return render(request,"stuRegister.html")
+
+
+def search(request):
+    return render(request,"search.html")
+
+
 def savestureg(request):
     na=request.POST.get("s1")
     em = request.POST.get("s2")
@@ -59,32 +69,64 @@ def savestureg(request):
     pwd = request.POST.get("s4")
     Student(name=na,contact=cno,emial=em,Password=pwd).save()
     return render(request,"stuRegister.html",{"data":'Student registered succesfully'})
+
 def LoginStu(request):
     return render(request,"studentlogin.html")
+def contactus(request):
+    return render(request,"contactus.html")
+
+
 def savestulog(request):
     un = request.POST.get("r1")
     pwd = request.POST.get("r2")
+    res = Scheduleclass.objects.all()
     try:
         data=Student.objects.get(name=un,Password=pwd)
-        return render(request,"welcome_student.html",{"result":data})
-    except ObjectDoesNotExist:
+        request.session['contact']=data.contact
+        return render(request,"welcome_student.html",{"result":data,'class':res})
+    except Student.DoesNotExist:
         return render(request,"studentlogin.html",{"data":'Invalid user'})
+
 def view_savedcourses(request):
-        result=Scheduleclass.objects.all()
-        return render(request,"view_savedcourses.html",{"data":result,})
+        result = Scheduleclass.objects.all()
+        details = Student.objects.all()
+        return render(request,"view_savedcourses.html",{"data":result,"student":details})
+
+
 def save_enroll(request):
-    id1=request.GET.get("scno")
-    id2=request.GET.get("Cid")
-    value=Student.objects.get(contact=id1)
-    Enrolleddetails(Studentcontact=value,CourseID=id2).save()
-    return render(request,"view_savedcourses.html",{"message":'Student enrolled succesfully'})
+    #scno=request.GET.get("scno")
+    contact = request.GET.get('contact')
+    cid=request.GET.get("cid")
+    try:
+        Enrolleddetails.objects.get(Studentcontact=contact,CourseID=cid)
+        messages.error(request,"Already Entrolled")
+        return redirect('view_savedcourses')
+    except Enrolleddetails.DoesNotExist:
+        Enrolleddetails(Studentcontact=contact,CourseID=cid).save()
+        messages.success(request,"Successfully Enrolled")
+        return redirect('view_savedcourses')
 
 
+def view_enroll(request):
+    con=request.GET.get('con')
 
+    try:
+        res= Enrolleddetails.objects.filter(Studentcontact=con)
+        data = [Scheduleclass.objects.get(idno=x.CourseID) for x in res]
+        return render(request,"viewenroll.html",{"data":data})
+    except:
+        messages.error(request,"student does not enrolled")
+        return redirect('view_savedcourses')
+def cancel_enrolledcourse(request):
+    con=request.GET.get('con')
+    res=Enrolleddetails.objects.filter(Studentcontact=con)
+    data=[Scheduleclass.objects.get(idno=x.CourseID) for x in res]
+    return render(request,"cancel_enrolledcourse.html",{"data":data})
+def delete_enroll(request):
+    cid=request.GET.get("cid")
+    scno=request.GET.get("scno")
+    Enrolleddetails.objects.get(CourseID=cid,Studentcontact=scno).delete()
+    res=Enrolleddetails.objects.filter(Studentcontact=scno)
+    data = [Scheduleclass.objects.get(idno=x.CourseID) for x in res]
+    return render(request, "cancel_enrolledcourse.html", {"data": data})
 
-
-
-
-
-
-# Create your views here.

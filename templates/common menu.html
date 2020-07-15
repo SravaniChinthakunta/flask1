@@ -1,10 +1,12 @@
 
 
-    <table class="table table-dark" style="width: 800px" align="center" border="">
+    <table class="table table-dark" style="width:1000px" align="center" border="">
 
-        <tr><th><h5 align="center"><a href="{% url 'courses' %}" > Available Courses </a></h5></th>
+        <tr><th><h5 align="center"><a href="{% url 'student' %}"> Home </a></h5></th>
+            <th><h5 align="center"><a href="{% url 'courses' %}" > Available Courses </a></h5></th>
             <th><h5 align="center"><a href="{% url 'registerstu' %}"> Register</a></h5></th>
             <th><h5 align="center"><a href="{% url 'LoginStu' %}"> Login </a></h5></th>
-            <th><h5 align="center">Search</h5></th>
-            <th><h5 align="center">Contact US</h5></th></tr>
+            <th><h5 align="center"><a href="{% url 'contactus' %}" >Contact US</a></h5></th>
+            <th><h5 align="center"><a href="{% url 'search' %}" >search </a></h5> </th>
+            </tr>
     </table>

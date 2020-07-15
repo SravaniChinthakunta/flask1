@@ -6,7 +6,7 @@ class Scheduleclass(models.Model):
     date=models.DateField(auto_now_add=False)
     time=models.TimeField()
     fee=models.FloatField()
-    duration=models.ImageField()
+    duration=models.ImageField(default=True)
 class Student(models.Model):
     idno = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -15,7 +15,8 @@ class Student(models.Model):
     Password = models.CharField(max_length=50)
 
 class Enrolleddetails(models.Model):
-    Studentcontact=models.IntegerField(unique=True)
+    idno=models.AutoField(primary_key=True)
+    Studentcontact=models.IntegerField()
     CourseID=models.IntegerField()
 
 

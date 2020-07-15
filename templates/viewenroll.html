@@ -1,0 +1,24 @@
+{% extends 'common.html' %}
+{% block sravani %}
+    {% include 'login_menu.html' %}
+    <table class="table table-dark" style="width: 900px" align="center" border="">
+        <tr><th colspan="7"><h3 align="center">Enrolled Courses</h3></th></tr>
+        <tr><th>IDNO</th>
+        <th>Name</th>
+        <th>Faculty</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Fee</th>
+        <th>Duration</th></tr>
+    {% for x in data %}
+        <tr><th>{{ x.idno }}</th>
+        <th>{{ x.name }}</th>
+        <th>{{ x.faculty }}
+        <th>{{ x.date }}
+            <th>{{ x.time }}
+            <th>{{ x.fee }}
+            <th>{{ x.duration }}</th></tr>
+
+    {% endfor %}
+    </table>
+{% endblock %}
